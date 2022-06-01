@@ -1,0 +1,25 @@
+{
+  "name": "mulpagewebpack",
+  "version": "1.0.0",
+  "description": "多页面打包",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NetCloud2017/mulPageWebpack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NetCloud2017/mulPageWebpack/issues"
+  },
+  "homepage": "https://github.com/NetCloud2017/mulPageWebpack#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
