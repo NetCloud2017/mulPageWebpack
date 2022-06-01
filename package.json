@@ -4,6 +4,8 @@
   "description": "多页面打包",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server -c ./config/webpack.config.js --dev mode=devlopment",
+   "start2": "npx webpack serve ", 
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
