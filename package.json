@@ -4,9 +4,10 @@
   "description": "多页面打包",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server -c ./config/webpack.config.js --dev mode=devlopment",
+    "start": "webpack-dev-server -c ./config/webpack.config.js --env mode=devlopment",
     "start2": "npx webpack serve ",
     "start3": "http-server dist",
+    "build": "webpack --config  ./config/webpack.config.js --env mode=production",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
@@ -21,9 +22,18 @@
   },
   "homepage": "https://github.com/NetCloud2017/mulPageWebpack#readme",
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-minimizer-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "http-server": "^14.1.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "terser-webpack-plugin": "^5.3.3",
     "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2"
-  }
+    "webpack-cli": "^4.9.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "browserslist": [
+    ">1%",
+    "last 2 versions"
+  ]
 }

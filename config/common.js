@@ -1,10 +1,7 @@
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const cssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const copyWebpackPlugin = require('copy-webpack-plugin');
-const Merge = require('webpack-merge');
 //  外面定义了环境名这压力也写报 错了注释了就没有问题
 // const env = process.env.NODE_ENV;
 // env = "production";
@@ -79,17 +76,7 @@ module.exports = async (env, args) => {
             // 指定插入html 文件引入的资源路径 , 因为这些文件 有时是放在 cdn 上的。
             publicPath: 'http://localhost:8000/'
         },
-        resolve: {
-            // 别名
-            alias: {
-                '@': path.join(__dirname, '../../pages')
-            },
-            // 导入的模块 省去拓展名时， 若查找的模块在形同位置有同名时
-            // webpack 会会获取 extensions 里最前的拓展名的文件。
-
-            extensions: ['.json', '.js', '.vue']
-        },
-
+       
         // 当我们有些资源想用cdn 引入时，可以用 externals;
         externalsType: 'script', // 以 script 的方式 引入 externals 里的 连接；
         externals: {
