@@ -1,4 +1,3 @@
-const htmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const cssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
@@ -7,64 +6,16 @@ const cssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 // env = "production";
 const path = require('path');
 
-const fs = require('fs');
 
-let entriesObj = {};
 
-module.exports = async (env, args) => {
-    const pageNames = [];
-    entriesObj = await new Promise((resolve, reject) => {
-        fs.promises
-            .readdir('../../pages')
+module.exports = (env, args) => {
+   
 
-            .then((res) => {
-                const entriesFilesPath = res.map((dir) => {
-                    const pathStr = `./pages/${dir}/index.js`;
-                    pageNames.push(dir);
-                    // fs.access(pathStr, function (err) {
-                    //     //    文件和目录不存在的情况下；
-                    //     if (err.code == "ENOENT") {
-                    //         console.log("文件和目录不存在");
-                    //     }
-                    // });
-                    return pathStr;
-                });
-
-                const obj = {};
-                pageNames.forEach((key, index) => {
-                    // 利用 入口文件的 dependOn 来 收集公共代码
-                    // obj[key] = {
-                    //     import: entriesFilesPath[index],
-                    //     dependOn: "shared",
-                    // };
-                    // // 抽离公共代码， 并且以 shared 来命名这个shared.bundle.js
-                    // obj['shared'] = 'lodash';
-
-                    // {
-                    //     home: {
-                    //         import: "./pages/home/index.js",
-                    //         dependOn: "shared",
-                    //     },
-                    //     shared: "lodash",
-                    //     plaform: {
-                    //         import: "./pages/plaform/index.js",
-                    //         dependOn: "shared",
-                    //     },
-                    // }
-
-                    obj[key] = entriesFilesPath[index];
-                });
-                resolve(obj);
-            });
-    });
-
-    console.log(env, entriesObj, 'env');
     const bundlePath = path.resolve(__dirname, '../../buildMpa');
 
     const config = {
         devtool: 'inline-source-map',
         mode: env.development ? 'development' : 'production',
-        entry: entriesObj,
         output: {
 
             path: bundlePath,
@@ -182,13 +133,7 @@ module.exports = async (env, args) => {
             // new copyWebpackPlugin({
 
             // }),
-            ...Object.keys(entriesObj).map(
-                (pageTitle) => new htmlWebpackPlugin({
-                    template: './index.html',
-                    filename: `${pageTitle}/index.html`,
-                    title: pageTitle
-                })
-            )
+           
         ],
         optimization: {
             minimizer: [

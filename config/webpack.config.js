@@ -8,14 +8,73 @@ const { merge } = require("webpack-merge");
 // const env = process.env.NODE_ENV;
 // env = "production";
 const path = require("path");
-
+const fs = require("fs");
 const commonConfig = require("./common");
 const prodConfig = require("./prod");
 const devConfig = require("./dev");
-console.log('hello world');
+console.log("hello world");
+let entriesObj = {};
+const pageNames = [];
+const htmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = async (env, args) => {
+  entriesObj = await new Promise((resolve, reject) => {
+    fs.promises
+      .readdir("./src/pages")
+
+      .then((res) => {
+        const entriesFilesPath = res.map((dir) => {
+          const pathStr = `./src/pages/${dir}/index.js`;
+          pageNames.push(dir);
+          // fs.access(pathStr, function (err) {
+          //     //    文件和目录不存在的情况下；
+          //     if (err.code == "ENOENT") {
+          //         console.log("文件和目录不存在");
+          //     }
+          // });
+          return pathStr;
+        });
+
+        const obj = {};
+        pageNames.forEach((key, index) => {
+          // 利用 入口文件的 dependOn 来 收集公共代码
+          // obj[key] = {
+          //     import: entriesFilesPath[index],
+          //     dependOn: "shared",
+          // };
+          // // 抽离公共代码， 并且以 shared 来命名这个shared.bundle.js
+          // obj['shared'] = 'lodash';
+
+          // {
+          //     home: {
+          //         import: "./pages/home/index.js",
+          //         dependOn: "shared",
+          //     },
+          //     shared: "lodash",
+          //     plaform: {
+          //         import: "./pages/plaform/index.js",
+          //         dependOn: "shared",
+          //     },
+          // }
+
+          obj[key] = entriesFilesPath[index];
+        });
+        resolve(obj);
+      });
+  });
+  console.log(env, entriesObj, "env");
+  console.log(env, "env ");
   const config = {
-    plugins: [],
+    entry: entriesObj,
+    plugins: [
+      ...Object.keys(entriesObj).map(
+        (pageTitle) =>
+          new htmlWebpackPlugin({
+            template: "./index.html",
+            filename: `${pageTitle}/index.html`,
+            title: pageTitle,
+          })
+      ),
+    ],
     resolve: {
       // 别名
       alias: {
@@ -24,7 +83,7 @@ module.exports = async (env, args) => {
       },
       // webpack 会会获取 extensions 里最前的拓展名的文件。
 
-    //   extensions: [".json", ".js", ".vue"],
+      //   extensions: [".json", ".js", ".vue"],
     },
 
     devServer: {
@@ -57,6 +116,6 @@ module.exports = async (env, args) => {
   if (env.production) {
     config.plugins.push(new CleanWebpackPlugin());
   }
-
-  return merge(config, commonConfig, env.production ? prodConfig : devConfig);
+  console.log(config, commonConfig, prodConfig, devConfig);
+  return merge(config, commonConfig(env), env.production ? prodConfig : devConfig);
 };
