@@ -22,10 +22,10 @@ module.exports = (env) => {
           ],
         },
 
-        {
-          test: /\.(htm|html)$/g,
-          use: "html-loader",
-        },
+        // {
+        //   test: /\.(htm|html)$/g,
+        //   use: "html-loader",
+        // },
         //  js 文件处理
         {
           test: /\.js/,

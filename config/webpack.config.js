@@ -45,17 +45,20 @@ module.exports = async (env, args) => {
           //         dependOn: "shared",
           //     },
           // }
-
-          obj[key] = entriesFilesPath[index];
+          // obj[key] =  entriesFilesPath[index]
+          obj[key] = {
+            import: entriesFilesPath[index],
+            filename: `${key}/js/[contenthash:5].js`, 
+          };
         });
         resolve(obj);
       });
   });
-
+  console.log(entriesObj);
   const config = {
-    entry: entriesObj,
+    entry:  entriesObj,
     resolve: {
-      // 别名
+      // 别名 
       alias: {
         "@": path.join(__dirname, "../src"),
         // 导入的模块 省去拓展名时， 若查找的模块在形同位置有同名时

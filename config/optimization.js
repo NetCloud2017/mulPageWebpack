@@ -19,9 +19,9 @@ module.exports = {
   optimization: {
     minimizer: [
       // 要 运行在 mode  production 模式中 css  样式压缩
-      new cssMinimizerWebpackPlugin(),
+      // new cssMinimizerWebpackPlugin(),
       //  添加 js 代码压缩 这个 terser-webpack-plugin 在 production 模式下才会压缩，development模式下不会。
-      new TerserPlugin(),
+      // new TerserPlugin(),
     ],
     splitChunks: {
       // chunks: "all",

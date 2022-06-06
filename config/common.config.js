@@ -34,6 +34,5 @@ module.exports = (env, { entriesObj }) => {
       ],
     },
   };
-
   return config;
 };

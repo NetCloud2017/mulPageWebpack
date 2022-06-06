@@ -7,7 +7,7 @@ module.exports = {
     // contentBase 在 webpack 5 中去除了。
     hot: true,
     // 设置 static,让 localhost 的根目录是 项目的根目录。
-    static: "buildMpa",
+    static: "./dist",
     port: 8000,
     compress: true,
     open: true,

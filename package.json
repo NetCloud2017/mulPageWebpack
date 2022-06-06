@@ -4,8 +4,8 @@
   "description": "多页面打包",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server -c ./config/webpack.config.js --env devlopment",
-    "start2": "npx webpack serve ",
+    "start": " webpack-dev-server -c ./config/webpack.config.js --env devlopment",
+    "start2": " webpack serve ",
     "start3": "http-server dist",
     "build": "webpack --config  ./config/webpack.config.js --env production",
     "test": "echo \"Error: no test specified\" && exit 0"
@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/NetCloud2017/mulPageWebpack#readme",
   "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-transform-runtime": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
+    "babel": "^6.23.0",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",

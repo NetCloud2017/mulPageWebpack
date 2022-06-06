@@ -18,7 +18,8 @@ module.exports = (env, options) => {
       ...Object.keys(pagePaths).map(
         (pageTitle) =>
           new htmlWebpackPlugin({
-            template: "./index.html",
+            // inject: "body",
+            template: "../index.html",
             filename: `${pageTitle}/index.html`,
             title: pageTitle,
           })
