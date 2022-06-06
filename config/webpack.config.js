@@ -4,8 +4,7 @@
 
 const { merge } = require("webpack-merge");
 //  外面定义了环境名这压力也写报 错了注释了就没有问题
-// const env = process.env.NODE_ENV;
-// env = "production";
+
 const path = require("path");
 const fs = require("fs");
 const commonConfig = require("./common.config");
@@ -55,8 +54,6 @@ module.exports = async (env, args) => {
 
   const config = {
     entry: entriesObj,
-    mode: "production",
-    devtool: "inline-source-map",
     resolve: {
       // 别名
       alias: {
@@ -68,5 +65,5 @@ module.exports = async (env, args) => {
     },
   };
 
-  return merge(config, commonConfig(env, entriesObj));
+  return merge(config, commonConfig(env, { entriesObj }));
 };

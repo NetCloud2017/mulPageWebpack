@@ -5,10 +5,21 @@
 //  外面定义了环境名这压力也写报 错了注释了就没有问题
 // const env = process.env.NODE_ENV;
 // env = "production";
-module.exports = (env, args) => {
+const devServer = require("./devServer");
+const modules = require("./modules");
+const optimization = require("./optimization");
+const output = require("./output");
+const plugins = require("./plugins");
+module.exports = (env, { entriesObj }) => {
   const config = {
     devtool: "inline-source-map",
-    // mode: env.development ? 'development' : 'production',
+
+    mode: env.production ? "production" : "development",
+    ...modules(env),
+    ...plugins(env, { pagePaths: entriesObj }),
+    ...output,
+    ...optimization,
+    ...devServer,
 
     // 当我们有些资源想用cdn 引入时，可以用 externals;
     externalsType: "script", // 以 script 的方式 引入 externals 里的 连接；
