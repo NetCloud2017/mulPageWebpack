@@ -9,8 +9,8 @@ module.exports = {
     // 设置 static,让 localhost 的根目录是 项目的根目录。
     static: "./dist",
     port: 8000,
-    compress: true,
-    open: true,
+    compress: true, // 一切服务都启用gzip 压缩
+    open: true, // 打开浏览器
     // headers: {key : 'value'}, // 添加响应头
     // 开启代理
     proxy: {

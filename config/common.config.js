@@ -10,15 +10,16 @@ const modules = require("./modules");
 const optimization = require("./optimization");
 const output = require("./output");
 const plugins = require("./plugins");
+
 module.exports = (env, { entriesObj }) => {
   const config = {
     devtool: "inline-source-map",
 
     mode: env.production ? "production" : "development",
-    ...modules(env),
-    ...plugins(env, { pagePaths: entriesObj }),
-    ...output,
-    ...optimization,
+    // ...modules(env),
+    // ...plugins(env, { pagePaths: entriesObj }),
+    // ...output,
+    // ...optimization,
     ...devServer,
 
     // 当我们有些资源想用cdn 引入时，可以用 externals;
