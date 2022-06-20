@@ -11,9 +11,13 @@ const  {dirFileInfo} = require("./nodeUtils")
 let entriesObj = {};
 module.exports = async (env, args) => {
   entriesObj = await dirFileInfo('./src/pages')
+  // console.log(entriesObj);
+
   console.log(entriesObj);
   const config = {
     entry:  entriesObj,
+
+
     resolve: {
       // 别名 
       alias: {

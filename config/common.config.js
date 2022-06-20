@@ -18,7 +18,7 @@ module.exports = (env, { entriesObj }) => {
     mode: env.production ? "production" : "development",
     // ...modules(env),
     // ...plugins(env, { pagePaths: entriesObj }),
-    // ...output,
+    ...output,
     // ...optimization,
     ...devServer,
 

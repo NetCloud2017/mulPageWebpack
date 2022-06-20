@@ -36,7 +36,7 @@ module.exports.dirFileInfo = function (dirPath) {
           // obj[key] =  entriesFilesPath[index]
           obj[key] = {
             import: entriesFilesPath[index],
-            filename: `${key}/js/[contenthash:5].js`,
+            // filename: `${key}/js/[contenthash:5].js`, // output 的输出文件名 优先级比 output的高；
           };
         });
         resolve(obj);

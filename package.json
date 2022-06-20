@@ -4,7 +4,7 @@
   "description": "多页面打包",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server -c ./config/webpack.config.js --env devlopment",
+    "start": "webpack-dev-server -c ./config/webpack.config.js --env development",
     "start2": " webpack serve ",
     "start3": "http-server dist",
     "build": "webpack --config  ./config/webpack.config.js --env production",
