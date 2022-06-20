@@ -26,6 +26,7 @@ module.exports = (env) => {
         //   test: /\.(htm|html)$/g,
         //   use: "html-loader",
         // },
+
         //  js 文件处理
         {
           test: /\.js/,
@@ -40,6 +41,7 @@ module.exports = (env) => {
             },
           },
         },
+        
         // {
         //     // A loader for webpack that lets you import files as a string.
         //     test: /\.txt$/,
