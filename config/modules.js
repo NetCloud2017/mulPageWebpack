@@ -36,7 +36,7 @@ module.exports = (env) => {
                             presets: ["@babel/preset-env"],
                             //  处理 js ES 语法 async await(会转译成 regeneratorRuntime 这个方法) 需要 用 @babel/runtime  @babel/plugin-transform-runtime
                             // 这两个包处理
-                            plugins: ["@babel/plugin-transform-runtime"],
+                            plugins: ["@babel/transform-runtime"],
                         },
                     },
                 },
