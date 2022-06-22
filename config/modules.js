@@ -33,7 +33,13 @@ module.exports = (env) => {
                     use: {
                         loader: "babel-loader",
                         options: {
-                            presets: ["@babel/preset-env"],
+                            presets: ["@babel/preset-env", {
+                                useBuildIns: 'entry',
+                                targets: {
+                                    esmodule: true,
+                                    browsers: ['>1%', 'last 2 version']
+                                }
+                            }],
                             //  处理 js ES 语法 async await(会转译成 regeneratorRuntime 这个方法) 需要 用 @babel/runtime  @babel/plugin-transform-runtime
                             // 这两个包处理
                             plugins: ["@babel/transform-runtime"],
