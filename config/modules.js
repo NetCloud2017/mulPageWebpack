@@ -34,7 +34,7 @@ module.exports = (env) => {
                         loader: "babel-loader",
                         options: {
                             presets: ["@babel/preset-env", {
-                                useBuildIns: 'entry',
+                                useBuildIns: 'usage',
                                 targets: {
                                     esmodule: true,
                                     browsers: ['>1%', 'last 2 version']
